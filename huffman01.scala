@@ -2,11 +2,11 @@ object Main {
     def encodeHuffman(data: String): (String, collection.mutable.Map[Char, String]) = {
         val numSymbols = data.length
         val numSymbolsD = numSymbols * 2
-		val symbolToAmount = collection.mutable.Map[Char, Int]()
-		val symbolToCode = collection.mutable.Map[Char, String]()
+        val symbolToAmount = collection.mutable.Map[Char, Int]()
+        val symbolToCode = collection.mutable.Map[Char, String]()
         val queue = collection.mutable.PriorityQueue[(Int, String)]()
 
-		data.foreach( c => {symbolToAmount.update (c, 1 + {symbolToAmount.getOrElse(c, 0)})} )
+        data.foreach( c => {symbolToAmount.update (c, 1 + {symbolToAmount.getOrElse(c, 0)})} )
 
         symbolToAmount.foreach(t => queue.enqueue((numSymbols - t._2, t._1.toString)))
 
@@ -45,9 +45,9 @@ object Main {
         decodedOutput
     }
 
-	def main(args: Array[String]): Unit = {
+    def main(args: Array[String]): Unit = {
         var encoded = encodeHuffman(args(0))
         println("Encoded: " + encoded._1)
         println("Decoded: " + decodeHuffman(encoded._1, encoded._2))
-	}
+    }
 }
